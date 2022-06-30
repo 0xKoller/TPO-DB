@@ -1,4 +1,7 @@
-CREATE TABLE medicos (
+create database CentroMedico
+go
+
+CREATE TABLE CentroMedico.dbo.medicos (
 	matricula INT,
 	nombre VARCHAR(50),
 	apellido VARCHAR(100),
@@ -8,13 +11,13 @@ CREATE TABLE medicos (
 )
 go
 
-create table especialidades (
+create table CentroMedico.dbo.especialidades (
 	idespecialidad int,
 	especialidad varchar(100),
 	constraint pk_especialidades primary key (idespecialidad)
 )
 go
-create table espemedi (
+create table CentroMedico.dbo.espemedi (
 	matricula int,
 	idespecialidad int,
 	constraint fk_espemedi_medicos foreign key (matricula) references medicos,
@@ -22,7 +25,7 @@ create table espemedi (
 )
 go
 
-create table estudios (
+create table CentroMedico.dbo.estudios (
 	idestudio int,
 	estudio varchar(100),
 	activo int,
@@ -30,7 +33,7 @@ create table estudios (
 )
 go
 
-create table estuespe (
+create table CentroMedico.dbo.estuespe (
 	idestudio int,
 	idespecialidad int,
 	constraint pk_estuespe primary key(idestudio, idespecialidad),
@@ -40,7 +43,7 @@ create table estuespe (
 go
 
 
-create table institutos (
+create table CentroMedico.dbo.institutos (
 	idinstituto int,
 	instituto varchar(100),
 	activo int,
@@ -48,7 +51,7 @@ create table institutos (
 )
 go
 
-create table precios (
+create table CentroMedico.dbo.precios (
 	idestudio int,
 	idinstituto int,
 	precio decimal(10,2),
@@ -58,7 +61,7 @@ create table precios (
 )
 go
 
-create table ooss (
+create table CentroMedico.dbo.ooss (
 	sigla varchar(10),
 	nombre varchar(50),
 	categoria varchar(50)
@@ -66,7 +69,7 @@ create table ooss (
 )
 go
 
-create table planes(
+create table CentroMedico.dbo.planes(
 	sigla varchar(10),
 	nroplan int,
 	nombre varchar(50),
@@ -76,7 +79,7 @@ create table planes(
 )
 go
 
-create table coberturas(
+create table CentroMedico.dbo.coberturas(
 	sigla varchar(10),
 	nroplan int,
 	idestudio int,
@@ -87,7 +90,7 @@ create table coberturas(
 )
 go
 
-create table afiliados(
+create table CentroMedico.dbo.afiliados(
 	dni int,
 	sigla varchar(10),
 	nroplan int,
@@ -97,7 +100,7 @@ create table afiliados(
 )
 go
 
-create table pacientes(
+create table CentroMedico.dbo.pacientes(
 	dni int,
 	nombre varchar(50),
 	apellido varchar(50),
@@ -107,7 +110,7 @@ create table pacientes(
 )
 go
 
-create table historias(
+create table CentroMedico.dbo.historias(
 	dni int,
 	idestudio int,
 	idinstituto int,

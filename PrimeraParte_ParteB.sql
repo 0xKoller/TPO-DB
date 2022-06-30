@@ -1,4 +1,7 @@
-create table Usuarios (
+create database PrimeraParte_ParteB
+go
+
+create table PrimeraParte_ParteB.dbo.usuarios (
 	idUsuario int,
 	nombre varchar(200),
 	alias varchar(50),
@@ -11,7 +14,7 @@ go
 
 
 
-create table categorias(
+create table PrimeraParte_ParteB.dbo.categorias(
 	idCategoria int,
 	nombre varchar(100),
 	descripcion varchar(200)
@@ -19,7 +22,7 @@ create table categorias(
 )
 go
 
-create table noticias(
+create table PrimeraParte_ParteB.dbo.noticias(
 	idNoticia int,
 	titulo varchar(150),
 	idCategoria int,
@@ -31,7 +34,7 @@ create table noticias(
 )
 go
 
-create table comentarios(
+create table PrimeraParte_ParteB.dbo.comentarios(
 	idComentario int,
 	idNoticia int,
 	texto varchar(200),
@@ -45,7 +48,7 @@ go
 
 
 
-create table privilegios(
+create table PrimeraParte_ParteB.dbo.privilegios(
 	idUsuario int,
 	privilegio varchar(15),
 	idCategoria int
@@ -54,7 +57,7 @@ create table privilegios(
 )
 go
 
-create table votaciones(
+create table PrimeraParte_ParteB.dbo.votaciones(
 	idVotacion int,
 	idNoticia int,
 	fechaInicio date,
