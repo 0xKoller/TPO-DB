@@ -154,7 +154,7 @@ insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VA
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Op.21 - Andante Cantabile Con Moto', 6.27, 5)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Op.36 - Allegro Con Brio', 12.46, 5)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Best 4 U', 3.59, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Red Pill Blues', 3.59, 6)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'What Lovers Do', 3.19, 6)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (10, 'Closure', 11.28, 6)
 
