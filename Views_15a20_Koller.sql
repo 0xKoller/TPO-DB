@@ -1,0 +1,1 @@
+create view vw_tabla_de_precios as 
