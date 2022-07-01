@@ -130,6 +130,8 @@ insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista
 insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (3,'TRAP DE VERDAD', '11-11-2021', 3, 2)
 insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (4,'Use Your Illusion I', '17-09-1991', 4, 3)
 insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (5,'Sinfonias', '01-01-1785', 5, 3)
+insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (6,'Red Pill Blues', '05-03-2017', 2, 1)
+insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (7,'V', '25-10-2014', 2, 1)
 go
 --Insert Temas
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Future Nostalgia', 3.04, 1)
@@ -143,6 +145,22 @@ insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VA
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (7, 'TRAP DE VERDAD', 2.12, 3)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (8, 'ORO Y PLATINO', 2.47, 3)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (9, 'INSPIRACION DIVINA', 3.11, 3)
+
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Right Next Door to Hell', 3.03, 4)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Perfect Crime', 2.24, 4)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Bad Apples', 4.29, 4)
+
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Op.21 - Allegro Con Brio', 9.17, 5)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Op.21 - Andante Cantabile Con Moto', 6.27, 5)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Op.36 - Allegro Con Brio', 12.46, 5)
+
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Best 4 U', 3.59, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'What Lovers Do', 3.19, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (10, 'Closure', 11.28, 6)
+
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Maps', 3.10, 7)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Animals', 3.49, 7)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Sugar', 3.56, 7)
 go
 --Insert Clientes
 insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (1, 'Jose Luis', 87.40)
