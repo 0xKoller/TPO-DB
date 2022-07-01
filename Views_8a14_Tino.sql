@@ -31,5 +31,39 @@ CREATE VIEW vw_historias_de_estudios AS
 			INNER JOIN pacientes pac on his.dni = pac.dni
 			INNER JOIN institutos ins on his.idinstituto = ins.idinstituto
 			INNER JOIN estudios est on his.idestudio = est.idestudio
+GO
 
 
+-- 11) 
+CREATE VIEW vw_pagos_recientes AS
+	SELECT pac.nombre, his.dni, est.estudio, fecha, precio
+		FROM Historias his
+			INNER JOIN Precios pre ON his.idEstudio = pre.idEstudio and his.idinstituto = pre.idinstituto
+			INNER JOIN Pacientes pac ON his.dni = pac.dni
+			INNER JOIN Estudios est on his.idestudio = est.idestudio
+GO
+
+-- 12) 
+CREATE VIEW vw_ooss_pacientes AS
+	SELECT oos.nombre OOSS, pla.nombre NombrePlan, pla.activo, pac.dni, pac.nombre, pac.apellido
+		FROM ooss oos
+			INNER JOIN planes pla on oos.sigla = pla.sigla
+			LEFT JOIN Afiliados afi on oos.sigla = afi.sigla and pla.nroplan = afi.nroplan
+			LEFT JOIN pacientes pac on afi.dni = pac.dni
+GO
+
+-- 13) 
+CREATE VIEW vw_estudios_sin_cobertura AS
+	SELECT estudio 
+		FROM Estudios est
+			LEFT JOIN coberturas cob on est.idestudio = cob.idestudio
+				WHERE sigla is null
+GO
+
+-- 14) 
+CREATE VIEW vw_planes_sin_cobertura AS
+	SELECT pla.sigla, pla.nroplan, pla.nombre
+		FROM Planes pla
+			LEFT JOIN Coberturas cob on pla.sigla = cob.sigla and pla.nroplan = cob.nroplan
+				WHERE idEstudio is null
+GO
