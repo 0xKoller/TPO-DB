@@ -22,12 +22,14 @@ CREATE VIEW vw_cantidad_estudios_por_medico AS
 		INNER JOIN Medicos med on his.matricula = med.matricula
 GO
 
+-- 10)
+CREATE VIEW vw_historias_de_estudios AS
+	SELECT pac.dni DniPaciente, pac.nombre NombrePaciente, pac.apellido ApellidoPaciente, med.matricula MatriculaMedico, med.nombre NombreMedico, med.apellido ApellidoMedico,
+		his.fecha, his.sigla ObraSocial, instituto Instituto, estudio Estudio
+		FROM Historias his
+			INNER JOIN medicos med on his.matricula = med.matricula
+			INNER JOIN pacientes pac on his.dni = pac.dni
+			INNER JOIN institutos ins on his.idinstituto = ins.idinstituto
+			INNER JOIN estudios est on his.idestudio = est.idestudio
 
-SELECT * FROM HISTORIAS
 
-SELECT * FROM vw_cantidad_estudios_por_institutos
-
-INSERT INTO especialidades VALUES (1, 'Oculista'), (2, 'Traumatologo'), (3, 'Cirujano')
-
-INSERT INTO estuespe VALUES (2,1), (1,2), (1,3)
-SELECT * FROM ESTUDIOS
