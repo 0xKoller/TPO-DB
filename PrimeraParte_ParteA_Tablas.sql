@@ -142,8 +142,8 @@ insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VA
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Lost', 2.53, 2)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (6, 'Echo', 2.59, 2)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (7, 'TRAP DE VERDAD', 2.12, 3)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (8, 'ORO Y PLATINO', 2.47, 3)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (7, 'TRAP DE ÒERDAD', 2.12, 3)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (8, 'ORO Y PLATIÒO', 2.47, 3)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (9, 'INSPIRACION DIVINA', 3.11, 3)
 
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Right Next Door to Hell', 3.03, 4)
@@ -166,6 +166,7 @@ go
 insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (1, 'Jose Luis', 87.40)
 insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (2, 'Constantino', 7.30)
 insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (3, 'Matias', 999.99)
+insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (4, 'Latour', -92.59)
 go
 --Insert Pedidos
 insert into PrimeraParte_ParteA.dbo.Pedidos (nroPedido, fecha, codCliente,fechaEntrega,lugarEntrega) VALUES (1, '28-06-2022', 1, '01-07-2022', 'Bernardo de Irigoyen 924')
@@ -181,6 +182,7 @@ go
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (1, 'Walkman', 15, 5,250.00)
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (2, 'PC', 20, 20,2000.00)
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (3, 'Parlantes', 30, 50,180.00)
+insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (4, 'Volante', 5, 3,5000.00)
 go
 --Insert ItemsPedido
 insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (1, 2, 5)
