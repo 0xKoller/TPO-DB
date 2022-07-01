@@ -26,32 +26,21 @@ CREATE PROCEDURE proyectaEstudiosCubiertosPorOoss
 	AS
 	BEGIN
 		IF @nombrePlan IS NOT NULL
-			SELECT est.estudio, cob.cobertura 
+			SELECT est.estudio, cob.cobertura, pla.nombre 
 				FROM estudios est
 					INNER JOIN coberturas cob ON est.idestudio = cob.idestudio
-					INNER JOIN (SELECT sigla FROM ooss WHERE nombre = @nombreOoss) oos ON cob.sigla = oos.sigla
+					INNER JOIN (SELECT * FROM Planes WHERE nombre = @nombrePlan) pla on cob.nroplan = pla.nroplan and cob.sigla = pla.sigla
+						WHERE 
+							(SELECT sigla FROM ooss WHERE nombre = @nombreOoss) = cob.sigla 
+							
 		ELSE
-			SELECT est.estudio, cob.cobertura 
+			SELECT est.estudio, cob.cobertura, pla.nombre 
 				FROM estudios est
 					INNER JOIN coberturas cob ON est.idestudio = cob.idestudio
-					INNER JOIN (SELECT sigla FROM ooss WHERE nombre = @nombreOoss) oos ON cob.sigla = oos.sigla
-					
+					INNER JOIN Planes pla on cob.nroplan = pla.nroplan and cob.sigla = pla.sigla
+					WHERE (SELECT sigla FROM ooss WHERE nombre = @nombreOoss) = cob.sigla				
 	END
-
-
-INSERT INTO medicos values (2, 'Matias', 'Santoro', 1,'F')
-INSERT INTO especialidades values (1, 'Cirujano'), (2, 'Otorrino')
-
-INSERT INTO espemedi VALUES (2,1), (2,2)
-
-EXEC proyectaEspecialidad 'Cirujano', 'M'
+GO
 
 EXEC proyectaEstudiosCubiertosPorOoss 'Galeno'
 
-INSERT INTO ooss VALUES ('GALE', 'Galeno', 'Salud'), ('OSDE', 'Osde', 'Salud')
-INSERT INTO Planes VALUES ('GALE',1 , 'ORO', 1), ('OSDE', 1, '210', 1) 
-
-
-INSERT INTO Estudios VALUES (1, 'Tomografia', 1), (2, 'Radiografia',1)
-
-INSERT INTO Coberturas VALUES ('GALE',1,1,90), ('GALE',1,2,100), ('OSDE', 1, 1, 70), ('OSDE', 1, 2, 90)
