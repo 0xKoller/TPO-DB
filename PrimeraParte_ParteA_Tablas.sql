@@ -146,21 +146,21 @@ insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VA
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (8, 'ORO Y PLATIÒO', 2.47, 3)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (9, 'INSPIRACION DIVINA', 3.11, 3)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Right Next Door to Hell', 3.03, 4)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Perfect Crime', 2.24, 4)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Bad Apples', 4.29, 4)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (10, 'Right Next Door to Hell', 3.03, 4)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (11, 'Perfect Crime', 2.24, 4)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (12, 'Bad Apples', 4.29, 4)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Op.21 - Allegro Con Brio', 9.17, 5)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Op.21 - Andante Cantabile Con Moto', 6.27, 5)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Op.36 - Allegro Con Brio', 12.46, 5)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (13, 'Op.21 - Allegro Con Brio', 9.17, 5)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (14, 'Op.21 - Andante Cantabile Con Moto', 6.27, 5)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (15, 'Op.36 - Allegro Con Brio', 12.46, 5)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Red Pill Blues', 3.59, 6)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'What Lovers Do', 3.19, 6)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (10, 'Closure', 11.28, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (16, 'Red Pill Blues', 3.59, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (17, 'What Lovers Do', 3.19, 6)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (18, 'Closure', 11.28, 6)
 
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Maps', 3.10, 7)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Animals', 3.49, 7)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (5, 'Sugar', 3.56, 7)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (19, 'Maps', 3.10, 7)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (20, 'Animals', 3.49, 7)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (21, 'Sugar', 3.56, 7)
 go
 --Insert Clientes
 insert into PrimeraParte_ParteA.dbo.Cliente (codCliente, nombre, saldo) VALUES (1, 'Jose Luis', 87.40)
@@ -174,25 +174,33 @@ insert into PrimeraParte_ParteA.dbo.Pedidos (nroPedido, fecha, codCliente,fechaE
 insert into PrimeraParte_ParteA.dbo.Pedidos (nroPedido, fecha, codCliente,fechaEntrega,lugarEntrega) VALUES (3, '02-06-2022', 2, '10-06-2022', 'Av. Independencia 985')
 go
 --Insert Facturas
-insert into PrimeraParte_ParteA.dbo.Facturas (nroFactura, fecha, codCliente,codPedido,bruto,iva,IIBB,final) VALUES (1, '28-06-2022', 1, 1,250.00,10.0,0.0,275.0)
+insert into PrimeraParte_ParteA.dbo.Facturas (nroFactura, fecha, codCliente,codPedido,bruto,iva,IIBB,final) VALUES (1, '28-06-2022', 1, 1,5280.0,10.0,0.0,5808.0)
 insert into PrimeraParte_ParteA.dbo.Facturas (nroFactura, fecha, codCliente,codPedido,bruto,iva,IIBB,final) VALUES (2, '30-06-2022', 3, 2,2000.00,10.0,0.0,2200.0)
-insert into PrimeraParte_ParteA.dbo.Facturas (nroFactura, fecha, codCliente,codPedido,bruto,iva,IIBB,final) VALUES (3, '02-06-2022', 2, 1,180.00,10.0,0.0,198.0)
+insert into PrimeraParte_ParteA.dbo.Facturas (nroFactura, fecha, codCliente,codPedido,bruto,iva,IIBB,final) VALUES (3, '02-06-2022', 2, 3,180.00,10.0,0.0,198.0)
 go
 --Insert Productos
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (1, 'Walkman', 15, 5,250.00)
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (2, 'PC', 20, 20,2000.00)
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (3, 'Parlantes', 30, 50,180.00)
 insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (4, 'Volante', 5, 3,5000.00)
+insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (5, 'Mouse', 200, 50,100.00)
+insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (6, 'Auriculares', 83, 10,50.00)
+insert into PrimeraParte_ParteA.dbo.Productos (codProducto, descripcion, stock,puntoReposicion,precio) VALUES (7, 'PenDrive', 1000, 25,195.00)
 go
 --Insert ItemsPedido
 insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (1, 2, 5)
 insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (2, 3, 10)
 insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (3, 1, 15)
+insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (5, 1, 5)
+insert into PrimeraParte_ParteA.dbo.ItemsPedido (codProducto, codPedido, cantidad) VALUES (4, 1, 1)
 go
 --Insert ItemsFactura
-insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (1, 1, 1,275,0)
+insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (1, 2, 5,250,0)
 insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (2, 2, 1,2200,0)
 insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (3, 3, 1,198,0)
+insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (3, 1, 15,180,0)
+insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (5, 1, 5,100,0)
+insert into PrimeraParte_ParteA.dbo.ItemsFactura (codProducto, nroFactura, cantidad, precio, descuento) VALUES (4, 1, 1,5000,0)
 go
 --Insert Composiciones
 insert into PrimeraParte_ParteA.dbo.Composiciones VALUES (1,1,100)
