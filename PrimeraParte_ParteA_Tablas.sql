@@ -120,7 +120,7 @@ insert into PrimeraParte_ParteA.dbo.Artista (codArtista, nombre) VALUES (5, 'Lud
 go
 --Insert Generos
 insert into PrimeraParte_ParteA.dbo.Generos (codGenero, descripcion) VALUES (1, 'POP')
-insert into PrimeraParte_ParteA.dbo.Generos (codGenero, descripcion) VALUES (2, 'TRAP')
+insert into PrimeraParte_ParteA.dbo.Generos (codGenero, descripcion) VALUES (2, 'TRAPS')
 insert into PrimeraParte_ParteA.dbo.Generos (codGenero, descripcion) VALUES (3, 'ROCK')
 insert into PrimeraParte_ParteA.dbo.Generos (codGenero, descripcion) VALUES (4, 'CLASICO')
 go

@@ -50,5 +50,11 @@ select nombre, Facturas.final from Cliente
 --Ejer 13
 select * from Productos where stock < puntoReposicion
 
+--Ejer 18
+select Albumes.titulo, descripcion as NombreGenero from Albumes 
+	inner join Generos on Generos.codGenero = Albumes.codGenero 
+	where descripcion like '%p%' and descripcion not like '%s%'
 
+--Ejer 19 alta paja, hay que agregar algun producto con esa cantidad de caracteres
 
+--Ejer 20 hay que agregar data del mes de febrero
