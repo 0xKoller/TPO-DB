@@ -1,7 +1,3 @@
--- Parte A: Vistas
-
--- Mati hace 1-2-3-4-5-6-7
-
 -- 8) 
 CREATE VIEW vw_cantidad_estudios_por_institutos AS 
 	SELECT instituto, estudio, VecesSolicitado FROM 

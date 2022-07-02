@@ -1,1 +1,1 @@
-create view vw_tabla_de_precios as 
+create view vw_tabla_de_precios as select estudios.idestudio, ooss.nombre from estudios inner join coberturas on estudios.idestudio = coberturas.idestudio inner join ooss on ooss.sigla = coberturas.sigla
