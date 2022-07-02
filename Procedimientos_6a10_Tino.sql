@@ -78,11 +78,28 @@ GO
 -- EJEMPLO: exec estudiosPorOossYMedico 'Osde', null , 1
 
 -- 9)
-CREATE PROCEDURE 
-	(@nombreOoss NVARCHAR(100) = null, @nombrePlan NVARCHAR(100) = null, @matricula int = null)
+CREATE PROCEDURE nPacientesMasViejosConPatronApellido
+	(@cantidad int, @patron varchar(100) = null)
 	AS
-	BEGIN
-		DECLARE @sentencia nvarchar(1000)
-		SET @sentencia = 
+	BEGIN 	
+		IF @patron is null
+			SELECT dni, nacimiento, nombre, apellido FROM pacientes pac
+				ORDER BY YEAR(nacimiento) asc
+				OFFSET 0 ROWS
+				FETCH FIRST @cantidad ROWS ONLY 
+		ELSE
+			BEGIN
+			DECLARE @patronConvertido varchar(110)
+			SET @patronConvertido = '%' + @patron + '%'
+			SELECT dni, nacimiento, nombre, apellido FROM pacientes pac
+				WHERE apellido LIKE @patronConvertido
+				ORDER BY YEAR(nacimiento) asc
+				OFFSET 0 ROWS
+				FETCH FIRST @cantidad ROWS ONLY
+			END
+	END
+GO									
 
-												
+exec nPacientesMasViejosConPatronApellido 4
+
+
