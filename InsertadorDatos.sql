@@ -99,3 +99,13 @@ INSERT INTO Historias
 	(2, 1, 1, '30/06/2022', 2, 'OSDE', 1, ''),
 	(1,1,2,'29/06/2022', 1, 'OSDE', 1, '')
 
+
+INSERT INTO Especialidades
+	VALUES
+	(1, 'Clinico'),
+	(2, 'Oftalmologo'),
+	(3, 'Cirujano')
+
+INSERT INTO Espemedi
+	VALUES
+	(1, 1), (2,2), (2,3), (4,1), (3,1)
