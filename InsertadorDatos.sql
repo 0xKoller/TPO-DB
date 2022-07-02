@@ -101,3 +101,13 @@ INSERT INTO Historias
 
 
 
+
+INSERT INTO Especialidades
+	VALUES
+	(1, 'Clinico'),
+	(2, 'Oftalmologo'),
+	(3, 'Cirujano')
+
+INSERT INTO Espemedi
+	VALUES
+	(1, 1), (2,2), (2,3), (4,1), (3,1)
