@@ -70,13 +70,23 @@ INSERT INTO Precios
 	VALUES 
 	(1, 1, 2500),
 	(1,2,2000),
-	(2,1,1500),
-	(2,2, 2000)
+	(1,3,1000),
+	(2,1, 1500),
+	(2,2, 2000),
+	(2,3, 3405),
+	(3,1, 500),
+	(3,2, 200),
+	(3,3, 405),
+	(4,1, 150),
+	(4,2, 250),
+	(4,3, 340)
 
 INSERT INTO Medicos 
 	VALUES 
 	(1, 'Jose Luis', 'Koller', 1, 'M'), 
-	(2, 'Matias', 'Santoro', 1, 'M')
+	(2, 'Matias', 'Santoro', 1, 'M'),
+	(3, 'Paola', 'Torres', 1, 'F'),
+	(4, 'Leandro', 'Montero', 0, 'M')
 
 INSERT INTO Historias 
 	VALUES 
