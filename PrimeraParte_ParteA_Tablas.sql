@@ -134,8 +134,8 @@ insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista
 insert into PrimeraParte_ParteA.dbo.Albumes (codAlbum, titulo, fecha, codArtista, codGenero) VALUES (7,'V', '25-10-2014', 2, 1)
 go
 --Insert Temas
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Future Nostalgia', 3.04, 1)
-insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Dont Start Now', 3.03, 1)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (1, 'Future ñostalgia', 3.04, 1)
+insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (2, 'Dont Start ñow', 3.03, 1)
 insert into PrimeraParte_ParteA.dbo.Temas (codTema, titulo,duracion,codAlbum) VALUES (3, 'Levitating', 3.23, 1)
 
 
