@@ -1,4 +1,4 @@
--- Ejercicios de 1 a 14 es de la tabla de Musica
+-- Ejercicios de 1 a 13 y 18 hasta el ultimo son de la tabla de Musica 
 
 --Ejer 1
 SELECT COUNT (*) as CantTemas FROM Temas T 
