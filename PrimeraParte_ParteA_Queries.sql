@@ -1,3 +1,5 @@
+-- Ejercicios de 1 a 14 es de la tabla de Musica
+
 --Ejer 1
 SELECT COUNT (*) as CantTemas FROM Temas T 
 	INNER JOIN Albumes A ON A.codAlbum = T. codAlbum 
@@ -14,7 +16,7 @@ select descripcion from Generos
 	as TablaResultante on Generos.codGenero = TablaResultante.codGenero
 
 --Ejer 4
--- select codAlbum from Temas inner join select max(cuenta) from (select codAlbum, count(codAlbum) cuenta from Temas group by codAlbum)  on Temas.codAlbum = T.codAlbum
+
 
 --Ejer 5
 select Albumes.titulo as nombreAlbum, Temas.titulo as nombreTema from Albumes inner join Temas on Albumes.codAlbum = Temas.codAlbum where Albumes.titulo = Temas.titulo
@@ -29,4 +31,24 @@ select nombre as NombreArtista, Albumes.titulo as NombreAlbum, Temas.titulo as N
 --Ejer 7
 select nombre, saldo from Cliente where saldo < 0
 
---Ejer 8
+--Ejer 8 paja
+
+--Ejer 9
+
+--Ejer 10 hacelo vos mati xq ni idea lo de composiones
+
+--Ejer 11
+select Productos.codProducto, descripcion from Productos 
+	left join ItemsPedido on Productos.codProducto = ItemsPedido.codProducto 
+	where ItemsPedido.codProducto is Null
+
+--Ejer 12
+select nombre, Facturas.final from Cliente 
+	inner join Facturas on Facturas.codCliente = Cliente.codCliente 
+	inner join (select max(final) as final from Facturas) as TablaResultante on TablaResultante.final = Facturas.final
+
+--Ejer 13
+select * from Productos where stock < puntoReposicion
+
+
+
