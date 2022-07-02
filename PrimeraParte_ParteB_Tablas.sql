@@ -88,7 +88,7 @@ go
 
 --Insert Noticias
 insert into noticias(idNoticia, titulo, idCategoria, autor, fecha, ubicacion) values (0, 'Se robaron hasta el papel higenico', 0, 1, '01/07/2022', 'Chacarita')
-insert into noticias(idNoticia, titulo, idCategoria, autor, fecha, ubicacion) values (1, 'No dejaron ni los cordones', 2, 1, '11/03/2021', 'Neuquen')
+insert into noticias(idNoticia, titulo, idCategoria, autor, fecha, ubicacion) values (1, 'No dejaron ni los cordones', 0, 2, '11/03/2021', 'Neuquen')
 go
 
 --Insert Comentarios
