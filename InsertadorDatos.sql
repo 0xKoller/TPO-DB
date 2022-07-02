@@ -1,4 +1,6 @@
 -- INSERTORES
+SET DATEFORMAT DMY
+go
 
 INSERT INTO Pacientes 
 	VALUES 
@@ -49,7 +51,7 @@ INSERT INTO Coberturas
 	('OSDE', 1, 2, 80),  
 	--Cobertura Tomografia
 	('MEDI', 1, 3, 80),
-	('GALE', 2, 3, 80),
+	('GALE', 1, 3, 80),
 	--Cobertura Laboratorio
 	('MEDI', 1, 4, 67),
 	('OSDE', 1, 4, 10),
