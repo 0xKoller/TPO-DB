@@ -1,4 +1,6 @@
 -- Procedimientos 6 - 10 
+SET DATEFORMAT DMY
+go
 
 -- 6) 
 CREATE PROCEDURE proyectaEspecialidad
@@ -100,6 +102,20 @@ CREATE PROCEDURE nPacientesMasViejosConPatronApellido
 	END
 GO									
 
-exec nPacientesMasViejosConPatronApellido 4
+
+-- 10)
+CREATE PROCEDURE precioLiquidarPorInstituto
+	(@nombreIns varchar(100), @fechaInicio date, @fechaFin date)
+	AS
+	BEGIN
+		SELECT SUM(precio) as PrecioALiquidar
+			FROM HISTORIAS his
+			INNER JOIN precios pre on his.idestudio = pre.idestudio and his.idinstituto = pre.idinstituto
+			WHERE (fecha BETWEEN @fechaInicio and @fechaFin) 
+				and his.idInstituto = (SELECT idInstituto FROM Institutos WHERE instituto = @nombreIns) 
+	END
+
+GO
+-- exec precioLiquidarPorInstituto 'Trinidad Palermo', '25/06/2022', '01/07/2022'
 
 
