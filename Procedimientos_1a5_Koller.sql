@@ -40,5 +40,70 @@ CREATE PROCEDURE updatePrecioEstudio
 			
 	END
 GO
-exec updatePrecioEstudio Radio, Poli, 200
 
+exec updatePrecioEstudio Radio, Poli, 200
+go
+
+--Ejer 2
+
+
+--Ejer 3
+create procedure ingresarAfiliado
+	(@dniPaciente int, @siglaOOSS varchar(50), @nroPlan int, @nroAfiliado int)
+	AS
+	BEGIN
+		IF EXISTS (SELECT dni, sigla, nroplan, nroafiliado FROM afiliados 
+		WHERE dni=@dniPaciente and sigla=@siglaOOSS)
+		BEGIN
+			--ESTE NO FUNCIONA XQ NO SE QUE NO ACTUALIZA LAS FK
+			update afiliados set nroplan=@nroPlan, nroafiliado=@nroAfiliado 
+			where dni=@dniPaciente and sigla=@siglaOOSS
+		END
+		ELSE
+		BEGIN
+			insert afiliados values (@dniPaciente, @siglaOOSS, @nroPlan, @nroAfiliado)
+		END
+	END
+GO
+
+exec ingresarAfiliado 41436383, MEDI, 1, 25
+exec ingresarAfiliado 1, MEDI, 23, 5
+GO
+--Ejer 4
+create procedure estudiosMY
+	(@month int, @year int)
+	AS
+	BEGIN
+		IF EXISTS (SELECT * from historias where MONTH(fecha)=@month and YEAR(fecha)=@year)
+			BEGIN
+				SELECT * from historias where MONTH(fecha)=@month and YEAR(fecha)=@year
+			END
+		ELSE
+			BEGIN
+				PRINT('No se encuentran estudio realizados para la fecha ingresada.')
+			END
+	END
+GO
+exec estudiosMY 12, 3040
+exec estudiosMY 06, 2022
+go
+
+--Ejer 5
+create procedure pacienteEdad
+	(@min int, @max int)
+	AS
+	BEGIN
+		IF EXISTS (select * from pacientes where DATEDIFF(YY, nacimiento, GETDATE()) between @min and @max)
+			BEGIN
+				select *,DATEDIFF(YY, nacimiento, GETDATE()) AS Edad  from pacientes where DATEDIFF(YY, nacimiento, GETDATE()) between @min and @max
+			END
+		ELSE
+			BEGIN
+				print('No existen pacientes en el rango de edad seleccionado.')
+			END
+	END
+GO
+
+exec pacienteEdad 20, 35
+exec pacienteEdad 0, 5
+go
