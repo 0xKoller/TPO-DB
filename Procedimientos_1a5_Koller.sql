@@ -45,7 +45,39 @@ exec updatePrecioEstudio Radio, Poli, 200
 go
 
 --Ejer 2
-
+create procedure estudiosProgramados
+	(@nombreEstudio varchar(50), @dniPaciente int, @matriculaMedico int, @nombreInstituto varchar(50),
+	@siglaOOSS varchar(10), @cantEstudios int, @franjaDias int)
+AS
+	BEGIN
+		IF @franjaDias > @cantEstudios
+			BEGIN
+				IF EXISTS (select matricula from medicos where matricula = @matriculaMedico) 
+				and EXISTS (select instituto from institutos where instituto = @nombreInstituto)
+				and EXISTS (select estudio from estudios where estudio = @nombreEstudio)
+				and EXISTS (select sigla from ooss where sigla = @siglaOOSS)
+				and EXISTS (select dni from pacientes where dni = @dniPaciente)
+				BEGIN
+					declare @idEstudio int
+					declare @idInstituto int
+					select @idEstudio = idestudio from estudios where estudio = @nombreEstudio
+					select @idInstituto = idinstituto from institutos where instituto = @nombreInstituto
+					DECLARE @i int = 0
+					declare @currentDate date = getDate()
+					WHILE @i < @cantEstudios 
+						BEGIN
+							SET @i = @i + 1
+							insert historias values (@dniPaciente, @idEstudio, @idInstituto, @currentDate, @matriculaMedico, @siglaOOSS)
+							set @currentDate = DATEADD(d,1,@currentDate)
+						END
+				END
+			END
+		ELSE
+			BEGIN
+				print('Solo se permite 1 estudio por dia, por favor ingrese una mayor franja de dias.')
+			END
+	END
+GO
 
 --Ejer 3
 create procedure ingresarAfiliado
@@ -69,6 +101,7 @@ GO
 exec ingresarAfiliado 41436383, MEDI, 1, 25
 exec ingresarAfiliado 1, MEDI, 23, 5
 GO
+
 --Ejer 4
 create procedure estudiosMY
 	(@month int, @year int)
