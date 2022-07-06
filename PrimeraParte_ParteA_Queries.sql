@@ -16,6 +16,12 @@ select descripcion from Generos
 	as TablaResultante on Generos.codGenero = TablaResultante.codGenero
 
 --Ejer 4
+select MAX(F.cantTemas) Cantidad_de_Temas from (select A.titulo,COUNT(T.codAlbum) cantTemas from Temas T INNER JOIN Albumes A ON T.codAlbum=A.codAlbum group by T.codAlbum, A.titulo) F
+
+
+
+
+
 
 
 --Ejer 5
@@ -32,6 +38,9 @@ select nombre as NombreArtista, Albumes.titulo as NombreAlbum, Temas.titulo as N
 select nombre, saldo from Cliente where saldo < 0
 
 --Ejer 8 paja
+select bruto, F.nroFactura, SUM(I.precio) PrecioTotal from Facturas F, ItemsFactura I where F.nroFactura=I.nroFactura
+group by bruto, F.nroFactura
+having bruto=SUM(I.precio)
 
 --Ejer 9
 
