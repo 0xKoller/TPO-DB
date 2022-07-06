@@ -47,7 +47,17 @@ as
 GO
 
 --Ejer 4
-
+create function instMasEspe
+	(@nombreEspecialidad varchar(50), @cantInst int)
+returns @tablaFinal table (idinstituto int, instituto varchar(50))
+as
+	BEGIN
+		declare @idespecialidad varchar(50)
+		select @idespecialidad = @idespecialidad from especialidades where especialidad = @nombreEspecialidad
+		--Sin terminar
+		RETURN
+	END
+go
 --Ejer 5
 create function estudiosNoRealizados
 	(@dias int)
