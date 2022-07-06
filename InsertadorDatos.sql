@@ -2,7 +2,7 @@
 SET DATEFORMAT DMY
 go
 
-INSERT INTO Pacientes 
+INSERT INTO CentroMedico.dbo.pacientes 
 	VALUES 
 	(1, 'Constantino', 'Monteavaro', 'M', '28/10/2001'),
 	(2, 'Luciana', 'Ramirez', 'F', '21/05/1992'),
@@ -10,13 +10,13 @@ INSERT INTO Pacientes
 	(4, 'Antonio', 'Perez', 'M', '01/10/1996'),
 	(5, 'Ezequiel', 'Estevez', 'M', '12/02/1994')
 
-INSERT INTO OOSS 
+INSERT INTO CentroMedico.dbo.OOSS 
 	VALUES 
 	('GALE', 'Galeno', 'Galeno'), 
 	('OSDE', 'Osde', 'Osde'), 
 	('MEDI', 'Medife', 'Medife')
 
-INSERT INTO Planes 
+INSERT INTO CentroMedico.dbo.Planes 
 	VALUES 
 	('GALE', 1, 'ORO',1), 
 	('OSDE', 2, '210', 1), 
@@ -24,7 +24,7 @@ INSERT INTO Planes
 	('MEDI', 1, 'Platino', 1), 
 	('MEDI', 2, 'Bronce', 0)
 
-INSERT INTO Afiliados 
+INSERT INTO CentroMedico.dbo.Afiliados 
 	VALUES 
 	(1, 'OSDE', 1, 1),
 	(2, 'OSDE', 1, 2),
@@ -32,7 +32,7 @@ INSERT INTO Afiliados
 	(4, 'OSDE', 2, 2),
 	(5, 'MEDI', 1, 5)
 
-INSERT INTO Estudios 
+INSERT INTO CentroMedico.dbo.Estudios 
 	VALUES 
 	(3, 'Tomografia', 1),
 	(1, 'Radiografia', 1),
@@ -41,7 +41,7 @@ INSERT INTO Estudios
 	(5, 'Ecografia', 0),
 	(6, 'Hisopado', 1)
 
-INSERT INTO Coberturas 
+INSERT INTO CentroMedico.dbo.Coberturas 
 	VALUES 
 	--Cobertura Radio
 	('GALE', 1,1,100), 
@@ -61,14 +61,14 @@ INSERT INTO Coberturas
 	('GALE', 1, 5, 45),
 	('MEDI', 1, 5, 20)
 
-INSERT INTO Institutos 
+INSERT INTO CentroMedico.dbo.Institutos 
 	VALUES 
 	(1, 'Trinidad Palermo', 1),
 	(2, 'Hospital Fernandez', 1),
 	(3, 'Policlinico', 1),
 	(4, 'ADOS', 0)
 
-INSERT INTO Precios 
+INSERT INTO CentroMedico.dbo.Precios 
 	VALUES 
 	(1, 1, 2500),
 	(1,2,2000),
@@ -83,14 +83,14 @@ INSERT INTO Precios
 	(4,2, 250),
 	(4,3, 340)
 
-INSERT INTO Medicos 
+INSERT INTO CentroMedico.dbo.Medicos 
 	VALUES 
 	(1, 'Jose Luis', 'Koller', 1, 'M'), 
 	(2, 'Matias', 'Santoro', 1, 'M'),
 	(3, 'Paola', 'Torres', 1, 'F'),
 	(4, 'Leandro', 'Montero', 0, 'M')
 
-INSERT INTO Historias 
+INSERT INTO CentroMedico.dbo.Historias 
 	VALUES 
 	(5,2,1,'04/07/2022', 3, 'MEDI', 1, ''),
 	(4,3,2,'03/07/2022', 2, 'OSDE', 1, ''),
@@ -102,12 +102,12 @@ INSERT INTO Historias
 
 
 
-INSERT INTO Especialidades
+INSERT INTO CentroMedico.dbo.Especialidades
 	VALUES
 	(1, 'Clinico'),
 	(2, 'Oftalmologo'),
 	(3, 'Cirujano')
 
-INSERT INTO Espemedi
+INSERT INTO CentroMedico.dbo.Espemedi
 	VALUES
 	(1, 1), (2,2), (2,3), (4,1), (3,1)

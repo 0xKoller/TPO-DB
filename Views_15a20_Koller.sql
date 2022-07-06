@@ -1,5 +1,8 @@
 --Ejer 15
 
+	
+
+
 --Ejer 16
 create view vw_nomina_de_medicos as  
 	select case sexo 
@@ -16,6 +19,7 @@ create view vw_estudios_en_tres_meses as
 	where fecha between dateadd(m,-3,getdate()) and getdate()
 go
 --Ejer 18
+
 
 go
 --Ejer 19
