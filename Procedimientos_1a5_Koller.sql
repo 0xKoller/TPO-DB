@@ -3,39 +3,39 @@ CREATE PROCEDURE updatePrecioEstudio
 	(@nombreEstudio VARCHAR(50), @nombreInstituto VARCHAR(50), @precioNuevo float) 
 	AS
 	BEGIN
-		declare @idEstudio int
-		declare @idInstituto int
-		declare @idEstudioNuevo int
-		declare @idInstitutoNuevo int
-		if exists (select instituto, estudio from institutos
-					inner join precios on institutos.idinstituto = precios.idinstituto
-					inner join estudios on estudios.idestudio = precios.idestudio
-					where estudio = @nombreEstudio or instituto = @nombreInstituto)
+		DECLARE @idEstudio INT
+		DECLARE @idInstituto INT
+		DECLARE @idEstudioNuevo INT
+		DECLARE @idInstitutoNuevo INT
+		IF exists (SELECT instituto, estudio FROM institutos
+					INNER JOIN precios on institutos.idinstituto = precios.idinstituto
+					INNER JOIN estudios on estudios.idestudio = precios.idestudio
+					WHERE estudio = @nombreEstudio or instituto = @nombreInstituto)
 			BEGIN
 				
-				if exists (select precio from precios 
-						inner join institutos on institutos.idinstituto = precios.idinstituto
-						inner join estudios on estudios.idestudio = precios.idestudio)
+				IF exists (SELECT precio FROM precios 
+						INNER JOIN institutos on institutos.idinstituto = precios.idinstituto
+						INNER JOIN estudios on estudios.idestudio = precios.idestudio)
 					BEGIN
-					select @idEstudio = idestudio from estudios 
-					where estudio= @nombreEstudio
-					select @idInstituto = idinstituto from institutos
-					where instituto = @nombreInstituto
-					update precios set precio=@precioNuevo where idestudio=@idEstudio and idinstituto=@idInstituto
+					SELECT @idEstudio = idestudio FROM estudios 
+					WHERE estudio= @nombreEstudio
+					SELECT @idInstituto = idinstituto FROM institutos
+					WHERE instituto = @nombreInstituto
+					update precios SET precio=@precioNuevo WHERE idestudio=@idEstudio AND idinstituto=@idInstituto
 					END
 				
 			END
 		else
 			BEGIN
-				select @idEstudio = estudios.idestudio from estudios 
-				inner join (select max(idestudio) as idestudio from estudios) Tabla on estudios.idestudio = Tabla.idestudio
-				select @idInstituto = institutos.idinstituto from institutos
-				inner join (select max(idinstituto) as idinstituto from institutos) Tabla on institutos.idinstituto = Tabla.idinstituto
-				set @idEstudioNuevo = sum(1+@idEstudio)
-				set @idInstitutoNuevo = sum(1+@idInstituto)
-				insert estudios values (@idEstudioNuevo, @nombreEstudio, 1)
-				insert institutos values (@idInstitutoNuevo, @nombreInstituto, 1)
-				insert precios values (@idEstudioNuevo,@idInstitutoNuevo,@precioNuevo)
+				SELECT @idEstudio = estudios.idestudio FROM estudios 
+				INNER JOIN (SELECT max(idestudio) AS idestudio FROM estudios) Tabla ON estudios.idestudio = Tabla.idestudio
+				SELECT @idInstituto = institutos.idinstituto FROM institutos
+				INNER JOIN (SELECT max(idinstituto) AS idinstituto FROM institutos) Tabla ON institutos.idinstituto = Tabla.idinstituto
+				SET @idEstudioNuevo = sum(1+@idEstudio)
+				SET @idInstitutoNuevo = sum(1+@idInstituto)
+				INSERT estudios values (@idEstudioNuevo, @nombreEstudio, 1)
+				INSERT institutos values (@idInstitutoNuevo, @nombreInstituto, 1)
+				INSERT precios values (@idEstudioNuevo,@idInstitutoNuevo,@precioNuevo)
 			END
 			
 	END
@@ -45,55 +45,55 @@ exec updatePrecioEstudio Radio, Poli, 200
 go
 
 --Ejer 2
-create procedure estudiosProgramados
-	(@nombreEstudio varchar(50), @dniPaciente int, @matriculaMedico int, @nombreInstituto varchar(50),
-	@siglaOOSS varchar(10), @cantEstudios int, @franjaDias int)
+CREATE PROCEDURE estudiosProgramados
+	(@nombreEstudio varchar(50), @dniPaciente INT, @matriculaMedico INT, @nombreInstituto varchar(50),
+	@siglaOOSS varchar(10), @cantEstudios INT, @franjaDias INT)
 AS
 	BEGIN
 		IF @franjaDias > @cantEstudios
 			BEGIN
-				IF EXISTS (select matricula from medicos where matricula = @matriculaMedico) 
-				and EXISTS (select instituto from institutos where instituto = @nombreInstituto)
-				and EXISTS (select estudio from estudios where estudio = @nombreEstudio)
-				and EXISTS (select sigla from ooss where sigla = @siglaOOSS)
-				and EXISTS (select dni from pacientes where dni = @dniPaciente)
+				IF EXISTS (SELECT matricula FROM medicos WHERE matricula = @matriculaMedico) 
+				AND EXISTS (SELECT instituto FROM institutos WHERE instituto = @nombreInstituto)
+				AND EXISTS (SELECT estudio FROM estudios WHERE estudio = @nombreEstudio)
+				AND EXISTS (SELECT sigla FROM ooss WHERE sigla = @siglaOOSS)
+				AND EXISTS (SELECT dni FROM pacientes WHERE dni = @dniPaciente)
 				BEGIN
-					declare @idEstudio int
-					declare @idInstituto int
-					select @idEstudio = idestudio from estudios where estudio = @nombreEstudio
-					select @idInstituto = idinstituto from institutos where instituto = @nombreInstituto
-					DECLARE @i int = 0
-					declare @currentDate date = getDate()
+					DECLARE @idEstudio INT
+					DECLARE @idInstituto INT
+					SELECT @idEstudio = idestudio FROM estudios WHERE estudio = @nombreEstudio
+					SELECT @idInstituto = idinstituto FROM institutos WHERE instituto = @nombreInstituto
+					DECLARE @i INT = 0
+					DECLARE @currentDate date = getDate()
 					WHILE @i < @cantEstudios 
 						BEGIN
 							SET @i = @i + 1
-							insert historias values (@dniPaciente, @idEstudio, @idInstituto, @currentDate, @matriculaMedico, @siglaOOSS)
-							set @currentDate = DATEADD(d,1,@currentDate)
+							INSERT historias values (@dniPaciente, @idEstudio, @idInstituto, @currentDate, @matriculaMedico, @siglaOOSS)
+							SET @currentDate = DATEADD(d,1,@currentDate)
 						END
 				END
 			END
 		ELSE
 			BEGIN
-				print('Solo se permite 1 estudio por dia, por favor ingrese una mayor franja de dias.')
+				PRINT('Solo se permite 1 estudio por dia, por favor ingrese una mayor franja de dias.')
 			END
 	END
 GO
 
 --Ejer 3
-create procedure ingresarAfiliado
-	(@dniPaciente int, @siglaOOSS varchar(50), @nroPlan int, @nroAfiliado int)
+CREATE PROCEDURE ingresarAfiliado
+	(@dniPaciente INT, @siglaOOSS varchar(50), @nroPlan INT, @nroAfiliado INT)
 	AS
 	BEGIN
 		IF EXISTS (SELECT dni, sigla, nroplan, nroafiliado FROM afiliados 
-		WHERE dni=@dniPaciente and sigla=@siglaOOSS)
+		WHERE dni=@dniPaciente AND sigla=@siglaOOSS)
 		BEGIN
 			--ESTE NO FUNCIONA XQ NO SE QUE NO ACTUALIZA LAS FK
-			update afiliados set nroplan=@nroPlan, nroafiliado=@nroAfiliado 
-			where dni=@dniPaciente and sigla=@siglaOOSS
+			update afiliados SET nroplan=@nroPlan, nroafiliado=@nroAfiliado 
+			WHERE dni=@dniPaciente AND sigla=@siglaOOSS
 		END
 		ELSE
 		BEGIN
-			insert afiliados values (@dniPaciente, @siglaOOSS, @nroPlan, @nroAfiliado)
+			INSERT afiliados values (@dniPaciente, @siglaOOSS, @nroPlan, @nroAfiliado)
 		END
 	END
 GO
@@ -103,13 +103,13 @@ exec ingresarAfiliado 1, MEDI, 23, 5
 GO
 
 --Ejer 4
-create procedure estudiosMY
-	(@month int, @year int)
+CREATE PROCEDURE estudiosMY
+	(@month INT, @year INT)
 	AS
 	BEGIN
-		IF EXISTS (SELECT * from historias where MONTH(fecha)=@month and YEAR(fecha)=@year)
+		IF EXISTS (SELECT * FROM historias WHERE MONTH(fecha)=@month AND YEAR(fecha)=@year)
 			BEGIN
-				SELECT * from historias where MONTH(fecha)=@month and YEAR(fecha)=@year
+				SELECT * FROM historias WHERE MONTH(fecha)=@month AND YEAR(fecha)=@year
 			END
 		ELSE
 			BEGIN
@@ -122,17 +122,17 @@ exec estudiosMY 06, 2022
 go
 
 --Ejer 5
-create procedure pacienteEdad
-	(@min int, @max int)
+CREATE PROCEDURE pacienteEdad
+	(@min INT, @max INT)
 	AS
 	BEGIN
-		IF EXISTS (select * from pacientes where DATEDIFF(YY, nacimiento, GETDATE()) between @min and @max)
+		IF EXISTS (SELECT * FROM pacientes WHERE DATEDIFF(YY, nacimiento, GETDATE()) BETWEEN @min AND @max)
 			BEGIN
-				select *,DATEDIFF(YY, nacimiento, GETDATE()) AS Edad  from pacientes where DATEDIFF(YY, nacimiento, GETDATE()) between @min and @max
+				SELECT *,DATEDIFF(YY, nacimiento, GETDATE()) AS Edad  FROM pacientes WHERE DATEDIFF(YY, nacimiento, GETDATE()) BETWEEN @min AND @max
 			END
 		ELSE
 			BEGIN
-				print('No existen pacientes en el rango de edad seleccionado.')
+				PRINT('No existen pacientes en el rango de edad seleccionado.')
 			END
 	END
 GO

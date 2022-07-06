@@ -4,32 +4,32 @@
 
 
 --Ejer 16
-create view vw_nomina_de_medicos as  
-	select case sexo 
-	when 'M' then concat('Dr. ', nombre, ' ', upper(apellido))
-	when 'F' then concat('Dra. ', nombre, ' ', upper(apellido))
-	end as Medicos
-	from medicos
-go
+CREATE VIEW vw_nomina_de_medicos AS  
+	SELECT CASE sexo 
+	when 'M' THEN CONCAT('Dr. ', nombre, ' ', UPPER(apellido))
+	when 'F' THEN CONCAT('Dra. ', nombre, ' ', UPPER(apellido))
+	END AS Medicos
+	FROM medicos
+GO
 
 --Ejer 17
-create view vw_estudios_en_tres_meses as
-	select dni, estudio, fecha from historias 
-	inner join estudios on estudios.idestudio = historias.idestudio
-	where fecha between dateadd(m,-3,getdate()) and getdate()
-go
+CREATE VIEW vw_estudios_en_tres_meses AS
+	SELECT dni, estudio, fecha FROM historias 
+	INNER JOIN estudios ON estudios.idestudio = historias.idestudio
+	WHERE fecha BETWEEN DATEADD(m,-3,GETDATE()) and GETDATE()
+GO
 --Ejer 18
 
 
-go
+GO
 --Ejer 19
-create view vw_estudios_por_instituto as select dni, instituto, fecha, historias.idestudio from historias
-	inner join 
-	(select idestudio, count(idestudio) as CantEstudios from historias where fecha between dateadd(d,-7,getdate()) and getdate() group by idestudio ) TablaEstudios on TablaEstudios.idestudio = historias.idestudio
-	inner join institutos on historias.idinstituto = institutos.idinstituto
-go
+CREATE VIEW vw_estudios_por_instituto AS SELECT dni, instituto, fecha, historias.idestudio FROM historias
+	INNER JOIN 
+	(SELECT idestudio, COUNT(idestudio) AS CantEstudios FROM historias WHERE fecha BETWEEN DATEADD(d,-7,GETDATE()) and GETDATE() GROUP BY idestudio ) TablaEstudios ON TablaEstudios.idestudio = historias.idestudio
+	INNER JOIN institutos ON historias.idinstituto = institutos.idinstituto
+GO
 
 --Ejer 20
-create view vw_estudios_en_sabada as 
-	select dni, fecha from historias
-	inner join (select idestudio, count(idestudio) as CantEstudios from historias  group by idestudio) TablaEstudios on historias.idestudio = TablaEstudios.idestudio where datename(weekday, fecha) in ('Saturday');
+CREATE VIEW vw_estudios_en_sabada AS 
+	SELECT dni, fecha FROM historias
+	INNER JOIN (SELECT idestudio, COUNT(idestudio) AS CantEstudios FROM historias  GROUP BY idestudio) TablaEstudios ON historias.idestudio = TablaEstudios.idestudio WHERE DATENAME(WEEKDAY, fecha) IN ('Saturday');

@@ -1,73 +1,73 @@
 --Ejer 1
 CREATE FUNCTION edadPaciente
-	(@fechaNacimiento as Date)
+	(@fechaNacimiento AS DATE)
 RETURNS INT
 AS
 BEGIN
 	RETURN
-		DATEDIFF(YYYY, @fechaNacimiento, getDate())
+		DATEDIFF(YYYY, @fechaNacimiento, GETDATE())
 END
 go
 
 --Ejer 2
 CREATE FUNCTION preciosEstudio
-	(@nombreEstudio varchar(50))
-RETURNS @preciosEstudio TABLE(mayorPrecio float, menorPrecio float, precioPromedio float)
+	(@nombreEstudio VARCHAR(50))
+RETURNS @preciosEstudio TABLE(mayorPrecio FLOAT, menorPrecio FLOAT, precioPromedio FLOAT)
 AS
 BEGIN
-		declare @mayor float
-		declare @menor float
-		declare @prom float
-		select @prom = avg(precio) from precios 
-			inner join estudios on precios.idestudio = estudios.idestudio
-			where estudio = @nombreEstudio 
-		select @mayor = max(precio)from precios 
-			inner join estudios on precios.idestudio = estudios.idestudio
-			where estudio = @nombreEstudio
-		select @menor = min(precio)from precios 
-			inner join estudios on precios.idestudio = estudios.idestudio
-			where estudio = @nombreEstudio
-		insert into @preciosEstudio values (@mayor, @menor, @prom)
+		DECLARE @mayor FLOAT
+		DECLARE @menor FLOAT
+		DECLARE @prom FLOAT
+		SELECT @prom = AVG(precio) FROM precios 
+			INNER JOIN estudios ON precios.idestudio = estudios.idestudio
+			WHERE estudio = @nombreEstudio 
+		SELECT @mayor = MAX(precio)FROM precios 
+			INNER JOIN estudios ON precios.idestudio = estudios.idestudio
+			WHERE estudio = @nombreEstudio
+		SELECT @menor = MIN(precio)FROM precios 
+			INNER JOIN estudios ON precios.idestudio = estudios.idestudio
+			WHERE estudio = @nombreEstudio
+		INSERT INTO @preciosEstudio VALUES (@mayor, @menor, @prom)
 		RETURN
 END
 GO
 
 --Ejer 3
-create function tablaInfoAlfa
+CREATE FUNCTION tablaInfoAlfa
 ()
-returns @tablaFinal table(ooss varchar(50), especialidades varchar(50), institutos varchar(50), estudios varchar(50))
+RETURNS @tablaFinal TABLE(ooss VARCHAR(50), especialidades VARCHAR(50), institutos VARCHAR(50), estudios VARCHAR(50))
 as
 	BEGIN
-		insert into @tablaFinal (ooss) select nombre from ooss order by nombre ASC
-		insert into @tablaFinal (especialidades) select especialidad from especialidades order by especialidad ASC
-		insert into @tablaFinal (institutos) select instituto from institutos order by instituto ASC
-		insert into @tablaFinal (estudios) select estudio from estudios order by estudio ASC
+		INSERT INTO @tablaFinal (ooss) SELECT nombre FROM ooss ORDER BY nombre ASC
+		INSERT INTO @tablaFinal (especialidades) SELECT especialidad FROM especialidades ORDER BY especialidad ASC
+		INSERT INTO @tablaFinal (institutos) SELECT instituto FROM institutos ORDER BY instituto ASC
+		INSERT INTO @tablaFinal (estudios) SELECT estudio FROM estudios ORDER BY estudio ASC
 		RETURN
 	END
 GO
 
 --Ejer 4
-create function instMasEspe
-	(@nombreEspecialidad varchar(50), @cantInst int)
-returns @tablaFinal table (idinstituto int, instituto varchar(50))
+CREATE FUNCTION instMasEspe
+	(@nombreEspecialidad VARCHAR(50), @cantInst INT)
+RETURNS @tablaFinal TABLE (idinstituto INT, instituto VARCHAR(50))
 as
 	BEGIN
-		declare @idespecialidad varchar(50)
-		select @idespecialidad = @idespecialidad from especialidades where especialidad = @nombreEspecialidad
+		DECLARE @idespecialidad VARCHAR(50)
+		SELECT @idespecialidad = @idespecialidad FROM especialidades WHERE especialidad = @nombreEspecialidad
 		--Sin terminar
 		RETURN
 	END
 go
 --Ejer 5
-create function estudiosNoRealizados
-	(@dias int)
-returns @tablaFinal table (idestudio int, nombreEstudio varchar(50))
+CREATE FUNCTION estudiosNoRealizados
+	(@dias INT)
+RETURNS @tablaFinal TABLE (idestudio INT, nombreEstudio VARCHAR(50))
 AS
 	BEGIN
-		insert into @tablaFinal (idestudio, nombreEstudio)
-			select historias.idestudio, estudio from historias 
-				inner join estudios on historias.idestudio = estudios.idestudio
-				where fecha between DATEADD(d, -@dias, GETDATE()) and getdate()
+		INSERT INTO @tablaFinal (idestudio, nombreEstudio)
+			SELECT historias.idestudio, estudio FROM historias 
+				INNER JOIN estudios ON historias.idestudio = estudios.idestudio
+				WHERE fecha BETWEEN DATEADD(d, -@dias, GETDATE()) AND GETDATE()
 		RETURN
 	END
 GO
