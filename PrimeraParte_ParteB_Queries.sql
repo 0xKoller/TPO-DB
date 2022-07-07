@@ -7,7 +7,7 @@ select alias, noticias.idNoticia from noticias
 	inner join usuarios on usuarios.idUsuario = noticias.autor
 
 --Ejer 16
-
+	
 --Ejer 17
 
 --Ejer 18
