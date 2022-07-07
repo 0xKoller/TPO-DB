@@ -44,12 +44,12 @@ CREATE PROC sp_PreciosMinMax
 	(@siglaOS varchar(100))
 AS
 BEGIN
-	SELECT H.sigla,MIN(P.precio) 'Precio Minimo' FROM precios P 
+	SELECT H.sigla 'Obra Social',MIN(P.precio) 'Precio Minimo' FROM precios P 
 		INNER JOIN historias H ON P.idestudio=H.idestudio
 		WHERE H.sigla=@siglaOS
 		GROUP BY H.sigla
 
-	SELECT H.sigla,MAX(P.precio) 'Precio Maximo' FROM precios P 
+	SELECT H.sigla 'Obra Social',MAX(P.precio) 'Precio Maximo' FROM precios P 
 		INNER JOIN historias H ON P.idestudio=H.idestudio
 		WHERE H.sigla=@siglaOS
 		GROUP BY H.sigla
@@ -61,11 +61,41 @@ GO
 
 --Ejer 14 NI IDEEAAA 
 CREATE PROC sp_CombinatoriaMedicos
+	(@enteroN int)
 AS
 BEGIN
-	SELECT * FROM medicos,pacientes
+	DECLARE @combinatoria int,@factorialM int,@factorialN int, @enteroM int, @restaEnteros int,@factorialRestaEnteros int
+	SET @combinatoria = 0
+	SET @factorialM = 1
+	SET @factorialN = 1
+	SET @factorialRestaEnteros = 1
+
+	SET @enteroM = (SELECT COUNT(matricula) CantidadMedicos FROM medicos)
+	SET @restaEnteros = @enteroM - @enteroN
+
+	WHILE @enteroN > 0 
+		BEGIN
+			SET @factorialN = @factorialN*@enteroN
+			SET @enteroN = @enteroN - 1
+		END
+	WHILE @enteroM > 0 
+		BEGIN
+			SET @factorialM = @factorialM*@enteroM
+			SET @enteroM = @enteroM - 1
+		END
+	WHILE @restaEnteros > 0 
+		BEGIN
+			SET @factorialRestaEnteros = @factorialRestaEnteros*@restaEnteros
+			SET @restaEnteros = @restaEnteros - 1
+		END
+	SET @combinatoria = @factorialM / (@factorialN * @factorialRestaEnteros)
+	SELECT @combinatoria as 'Combinatoria'
 END
 GO
+
+EXEC sp_CombinatoriaMedicos 3
+GO
+
 
 --Ejer 15 
 CREATE PROC sp_PacMed_Estudios
