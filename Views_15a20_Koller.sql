@@ -1,7 +1,12 @@
 --Ejer 15
-
-	
-
+CREATE VIEW vw_tabla_de_precios AS
+	SELECT est.estudio, oos.nombre, cob.nroplan, ins.instituto, cob.cobertura, pre.precio, (pre.precio*(cobertura/100)) netoObraSocial, (pre.precio*(1-cobertura/100)) netoPaciente
+		FROM coberturas cob
+		INNER JOIN precios pre on cob.idEstudio = pre.idEstudio
+		INNER JOIN estudios est on cob.idEstudio = pre.idEstudio
+		INNER JOIN institutos ins on pre.idinstituto = ins.idinstituto
+		INNER JOIN ooss oos on cob.sigla = oos.sigla
+GO
 
 --Ejer 16
 CREATE VIEW vw_nomina_de_medicos AS  
@@ -20,8 +25,13 @@ CREATE VIEW vw_estudios_en_tres_meses AS
 GO
 --Ejer 18
 
-
+CREATE VIEW vw_estudios_por_mes AS
+	SELECT MONTH(fecha) mes, sexo , idestudio, COUNT(idEstudio) cant 
+		FROM HISTORIAS his
+		INNER JOIN pacientes pac on his.dni = pac.dni
+		GROUP BY month(fecha), idestudio, sexo
 GO
+
 --Ejer 19
 CREATE VIEW vw_estudios_por_instituto AS SELECT dni, instituto, fecha, historias.idestudio FROM historias
 	INNER JOIN 
