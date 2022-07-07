@@ -51,11 +51,11 @@ GO
 CREATE VIEW vw_afiliados_con_una_cobertura AS
 	SELECT pac.dni, pac.nombre, afi.nroAfiliado, afi.sigla, pla.nombre nombrePlan FROM
 		(SELECT pla.sigla, pla.nroplan, COUNT(pla.nroplan) cantCoberturas FROM planes pla
-			INNER JOIN coberturas cob on pla.sigla = cob.sigla and pla.nroplan = cob.nroplan
+			INNER JOIN coberturas cob ON pla.sigla = cob.sigla AND pla.nroplan = cob.nroplan
 			GROUP BY pla.sigla, pla.nroplan
 			HAVING COUNT(pla.nroPlan) = 1) cob
-		INNER JOIN afiliados afi on cob.sigla = afi.sigla and cob.nroplan = afi.nroPlan
-		INNER JOIN pacientes pac on afi.dni = pac.dni
-		INNER JOIN planes pla on afi.sigla = pla.sigla and afi.nroPlan = pla.nroPlan	
+		INNER JOIN afiliados afi ON cob.sigla = afi.sigla AND cob.nroplan = afi.nroPlan
+		INNER JOIN pacientes pac ON afi.dni = pac.dni
+		INNER JOIN planes pla ON afi.sigla = pla.sigla AND afi.nroPlan = pla.nroPlan	
 GO
 

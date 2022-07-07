@@ -1,28 +1,30 @@
 --Ejer 11
 SET DATEFORMAT DMY
-go
+GO
 
 CREATE PROC sp_PrecioTotalAFacturar
-	(@nombreOS varchar(100), @fechaIni date, @fechaFin date)
+	(@nombreOS VARCHAR(100), @fechaIni DATE, @fechaFin DATE)
 AS
 BEGIN
-	SELECT SUM(P.precio) 'Total a Facturar',COUNT(H.idestudio) 'Cantidad de Estudios' from precios P 
-	INNER JOIN historias H ON P.idestudio=H.idestudio and P.idinstituto=H.idinstituto
+	SELECT SUM(P.precio) 'Total a Facturar',COUNT(H.idestudio) 'Cantidad de Estudios' FROM precios P 
+	INNER JOIN historias H ON P.idestudio=H.idestudio AND P.idinstituto=H.idinstituto
 	INNER JOIN ooss OS ON H.sigla=OS.sigla
 	WHERE OS.nombre=@nombreOS AND H.fecha BETWEEN @fechaIni AND @fechaFin
 END
 GO
 
-exec sp_PrecioTotalAFacturar 'Osde', '25-06-2022', '05-07-2022'
-go
+EXEC sp_PrecioTotalAFacturar 'Osde', '25-06-2022', '05-07-2022'
+GO
 
+SET DATEFORMAT DMY
+GO
 --Ejer 12
 CREATE PROC sp_PagoPacienteMoroso
-	(@dniPaciente int,@nombreEstudio varchar(100),@fechaEstudio date, @punitorio float)
+	(@dniPaciente INT,@nombreEstudio VARCHAR(100),@fechaEstudio DATE, @punitorio FLOAT)
 AS
 BEGIN
-	DECLARE @punitorioDiario float
-	DECLARE @punitarioCorrespondiente float
+	DECLARE @punitorioDiario FLOAT
+	DECLARE @punitarioCorrespondiente FLOAT
 
 	SET @punitorioDiario = (@punitorio / 30)
 	SET @punitarioCorrespondiente = @punitorioDiario  * (DATEDIFF(DAY,@fechaEstudio,GETDATE()))
@@ -36,12 +38,12 @@ BEGIN
 END
 GO
 
-exec sp_PagoPacienteMoroso 4,'Tomografia','30-06-2022',4.50
+EXEC sp_PagoPacienteMoroso 4,'Tomografia','30-06-2022',4.50
 GO
 
 --Ejer 13
 CREATE PROC sp_PreciosMinMax
-	(@siglaOS varchar(100))
+	(@siglaOS VARCHAR(100))
 AS
 BEGIN
 	SELECT H.sigla 'Obra Social',MIN(P.precio) 'Precio Minimo' FROM precios P 
@@ -61,10 +63,10 @@ GO
 
 --Ejer 14 NI IDEEAAA 
 CREATE PROC sp_CombinatoriaMedicos
-	(@enteroN int)
+	(@enteroN INT)
 AS
 BEGIN
-	DECLARE @combinatoria int,@factorialM int,@factorialN int, @enteroM int, @restaEnteros int,@factorialRestaEnteros int
+	DECLARE @combinatoria INT,@factorialM INT,@factorialN INT, @enteroM INT, @restaEnteros INT,@factorialRestaEnteros INT
 	SET @combinatoria = 0
 	SET @factorialM = 1
 	SET @factorialN = 1
@@ -89,17 +91,17 @@ BEGIN
 			SET @restaEnteros = @restaEnteros - 1
 		END
 	SET @combinatoria = @factorialM / (@factorialN * @factorialRestaEnteros)
-	SELECT @combinatoria as 'Combinatoria'
+	SELECT @combinatoria AS 'Combinatoria'
 END
 GO
 
-EXEC sp_CombinatoriaMedicos 3
+EXEC sp_CombinatoriaMedicos 4
 GO
 
 
 --Ejer 15 
 CREATE PROC sp_PacMed_Estudios
-	(@mes int, @año int)
+	(@mes INT, @año INT)
 AS
 BEGIN
 	SELECT COUNT(H.dni) 'Cantidad de Pacientes', COUNT(H.matricula) 'Cantidad de Medicos' FROM historias H

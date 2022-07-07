@@ -2,7 +2,7 @@ SET DATEFORMAT DMY
 GO
 --EJER 8
 CREATE PROC sp_definirCursorImporteMensual
-	(@mesesAnteriores int)
+	(@mesesAnteriores INT)
 AS 
 BEGIN
 	DECLARE importeMensual CURSOR FOR
@@ -10,8 +10,8 @@ BEGIN
 		WHERE H.fecha BETWEEN (DATEADD(month,-@mesesAnteriores,GETDATE())) AND GETDATE()
 		GROUP BY P.idinstituto,P.precio,h.fecha
 	
-	DECLARE @precio int,@fecha date, @idInstituto int
-	DECLARE @resultado TABLE (precio int, fecha date, idInsti int)
+	DECLARE @precio INT,@fecha DATE, @idInstituto INT
+	DECLARE @resultado TABLE (precio INT, fecha DATE, idInsti INT)
 	
 	OPEN importeMensual
 
@@ -33,8 +33,8 @@ GO
 DECLARE actualizarObservaciones CURSOR FOR
 	SELECT H.dni,H.idinstituto,H.matricula,H.observaciones FROM historias H INNER JOIN pacientes P ON H.dni=P.dni
 
-DECLARE @dni int,@idInstituto int,@matricula int,@observaciones varchar(100)
-DECLARE @instiSegundo int
+DECLARE @dni INT,@idInstituto INT,@matricula INT,@observaciones VARCHAR(100)
+DECLARE @instiSegundo INT
 SET @instiSegundo = 0
 
 OPEN actualizarObservaciones
@@ -69,8 +69,8 @@ DECLARE actualizarPrecios CURSOR FOR
 	INNER JOIN estudios Est ON EstuE.idestudio=Est.idestudio
 	GROUP BY E.especialidad,P.precio
 
-DECLARE @precio float,@especialidad varchar(100)
-DECLARE @aumento float, @especialidadUsada varchar(100)
+DECLARE @precio FLOAT,@especialidad VARCHAR(100)
+DECLARE @aumento FLOAT, @especialidadUsada VARCHAR(100)
 SET @aumento = 0.02
 
 OPEN actualizarPrecios
