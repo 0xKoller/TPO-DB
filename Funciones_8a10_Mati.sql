@@ -34,7 +34,7 @@ RETURN
 	INNER JOIN planes P ON OS.sigla=P.sigla
 	WHERE Est.estudio=@nombreEstudio 
 		AND H.idinstituto = ANY(SELECT idinstituto FROM historias)
-		AND P.nroplan = ALL(SELECT nroplan FROM planes)
+		AND P.nroplan = ALL(SELECT coberturas.nroplan FROM coberturas WHERE OS.sigla=Cob.sigla)
 	GROUP BY OS.nombre,OS.categoria
 	)
 GO
