@@ -29,9 +29,10 @@ GO
 
 -- 5) FALTA QUE MUESTRE LAS ESPECIALIDADES
 CREATE VIEW vw_medicos_varias_especialidades AS
-	SELECT F.matricula, F.nombre,F.apellido,F.sexo,F.activo FROM (
+	SELECT T.especialidad, F.nombre,F.apellido,F.sexo,F.activo FROM (
 						SELECT M.matricula,M.nombre,M.apellido,M.sexo,M.activo,COUNT(EspM.Matricula) CantEspecialidades FROM medicos M INNER JOIN espemedi EspM ON M.matricula=EspM.matricula
-						GROUP BY M.matricula,M.nombre,M.apellido,M.sexo,M.activo) F
+						GROUP BY M.matricula,M.nombre,M.apellido,M.sexo,M.activo) F 
+						INNER JOIN (SELECT EspM.matricula,E.especialidad FROM espemedi EspM INNER JOIN especialidades E ON EspM.idespecialidad=E.idespecialidad) T ON F.matricula=T.matricula
 	WHERE F.CantEspecialidades > 1 AND F.activo = 1
 GO
 
