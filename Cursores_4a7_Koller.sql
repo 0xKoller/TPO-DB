@@ -109,8 +109,35 @@ CREATE PROCEDURE refeCruzadaOOSSEstuCursor
 					INSERT @tablaResultante VALUES(@nroPlan, @nombreEstudio, @cantXPlan)
 				FETCH refCruzadaOOSSEstu INTO @OOSS, @nroPlan, @nombreEstudio, @cantXPlan
 			END	
+		SELECT * FROM @tablaResultante
 		CLOSE refCruzadaOOSSEstu
 		DEALLOCATE refCruzadaOOSSEstu
+	END
+GO
+
+
+-- 7)
+CREATE PROCEDURE refeCruzadaEstInstFechaCursos
+	(@inicio DATE, @fin DATE)
+	AS
+	BEGIN
+		DECLARE refeCruzadaEstInstFecha CURSOR FOR
+			SELECT instituto, estudio, count(estudio) as CantEstu FROM historias his
+			INNER JOIN institutos ins ON ins.idinstituto = his.idinstituto
+			INNER JOIN estudios estu ON estu.idestudio = his.idestudio
+			WHERE his.fecha BETWEEN @inicio and @fin
+			GROUP BY instituto, estudio
+		DECLARE @nomInsti VARCHAR(20), @nomEstu VARCHAR(20), @cantEstu INT
+		DECLARE @tablaResultante TABLE (inst VARCHAR(20), estu VARCHAR(20), cant INT)
+		OPEN refeCruzadaEstInstFecha
+		FETCH refeCruzadaEstInstFecha INTO @nomInsti, @nomEstu, @cantEstu
+		WHILE @@FETCH_STATUS = 0
+			BEGIN
+				INSERT @tablaResultante VALUES (@nomInsti, @nomEstu, @cantEstu)
+				FETCH refeCruzadaEstInstFecha INTO @nomInsti, @nomEstu, @cantEstu
+			END
+		CLOSE refeCruzadaEstInstFecha
+		DEALLOCATE refeCruzadaEstInstFecha
 	END
 GO
 
