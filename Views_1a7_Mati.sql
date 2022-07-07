@@ -27,7 +27,7 @@ CREATE VIEW vw_pacientes_sin_cobertura AS
 	SELECT dni, nombre 'Nombre Paciente', apellido, sexo, nacimiento FROM pacientes
 GO
 
--- 5) FALTA QUE MUESTRE LAS ESPECIALIDADES
+-- 5)
 CREATE VIEW vw_medicos_varias_especialidades AS
 	SELECT T.especialidad, F.nombre,F.apellido,F.sexo,F.activo FROM (
 						SELECT M.matricula,M.nombre,M.apellido,M.sexo,M.activo,COUNT(EspM.Matricula) CantEspecialidades FROM medicos M INNER JOIN espemedi EspM ON M.matricula=EspM.matricula
