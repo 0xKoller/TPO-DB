@@ -49,15 +49,23 @@ GO
 --Ejer 4
 CREATE FUNCTION instMasEspe
 	(@nombreEspecialidad VARCHAR(50), @cantInst INT)
-RETURNS @tablaFinal TABLE (idinstituto INT, instituto VARCHAR(50))
+RETURNS @tablaFinal TABLE (instituto VARCHAR(50))
 as
 	BEGIN
 		DECLARE @idespecialidad VARCHAR(50)
 		SELECT @idespecialidad = @idespecialidad FROM especialidades WHERE especialidad = @nombreEspecialidad
-		--Sin terminar
+		INSERT INTO @tablaFinal SELECT TOP(@cantInst) inst.instituto from especialidades espes 
+		INNER JOIN estuespe ON estuespe.idespecialidad = espes.idespecialidad
+		INNER JOIN estudios estu ON estu.idestudio = estuespe.idestudio
+		INNER JOIN historias hist ON hist.idestudio = estu.idestudio
+		INNER JOIN institutos inst ON inst.idinstituto = hist.idinstituto
+		where espes.idespecialidad = @idespecialidad
+		GROUP BY inst.instituto 
+		ORDER BY hist.idinstituto DESC 
 		RETURN
 	END
 go
+
 --Ejer 5
 CREATE FUNCTION estudiosNoRealizados
 	(@dias INT)

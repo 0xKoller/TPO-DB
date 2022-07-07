@@ -41,7 +41,7 @@ CREATE PROCEDURE updatePrecioEstudio
 	END
 GO
 
-exec updatePrecioEstudio Radio, Poli, 200
+exec updatePrecioEstudio Radiografia, Policlinico, 99999
 go
 
 --Ejer 2
@@ -87,7 +87,6 @@ CREATE PROCEDURE ingresarAfiliado
 		IF EXISTS (SELECT dni, sigla, nroplan, nroafiliado FROM afiliados 
 		WHERE dni=@dniPaciente AND sigla=@siglaOOSS)
 		BEGIN
-			--ESTE NO FUNCIONA XQ NO SE QUE NO ACTUALIZA LAS FK
 			update afiliados SET nroplan=@nroPlan, nroafiliado=@nroAfiliado 
 			WHERE dni=@dniPaciente AND sigla=@siglaOOSS
 		END
@@ -99,7 +98,7 @@ CREATE PROCEDURE ingresarAfiliado
 GO
 
 exec ingresarAfiliado 41436383, MEDI, 1, 25
-exec ingresarAfiliado 1, MEDI, 23, 5
+exec ingresarAfiliado 1, MEDI, 1, 5
 GO
 
 --Ejer 4
