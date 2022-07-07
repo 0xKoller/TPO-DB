@@ -1,18 +1,30 @@
---Ejer 8 NI IDEEEEEEAAAA
+--Ejer 8 listo
 CREATE FUNCTION cadenaInicialEnMayus
 	(@stringInicial varchar(400))
 	RETURNS varchar(400)
 AS
 BEGIN
-	DECLARE @stringResultante varchar(400)
-	DECLARE @listaStrings varchar(400)
-	
-
-	SET @listaStrings = SUBSTRING(@stringInicial,0,CHARINDEX(' ',@stringInicial))+SUBSTRING(@stringInicial,CHARINDEX(' ',@stringInicial),LEN(@stringInicial))
-	
-
-	SET @stringResultante = UPPER(SUBSTRING(@stringInicial,1,1))+LOWER(SUBSTRING(@stringInicial,2,LEN(@stringInicial)-1))
-
+	DECLARE @index INT,	@stringResultante VARCHAR(200)
+	SET @index = 1
+	SET @stringResultante = ''
+	WHILE (@index <LEN(@stringInicial)+1)
+		BEGIN
+			IF (@index = 1)
+				BEGIN
+					SET @stringResultante =	@stringResultante + UPPER(SUBSTRING(@stringInicial, @index, 1))
+					SET @index = @index+ 1
+				END
+			ELSE IF ((SUBSTRING(@stringInicial, @index-1, 1) =' ') and @index+1 <> LEN(@stringInicial))
+				BEGIN
+					SET @stringResultante = @stringResultante + UPPER(SUBSTRING(@stringInicial,@index, 1))
+					SET	@index = @index +1
+				END
+			ELSE
+				BEGIN				
+					SET @stringResultante = @stringResultante + LOWER(SUBSTRING(@stringInicial,@index, 1))
+					SET @index = @index +1
+				END
+		END
 	RETURN @stringResultante
 END
 GO
@@ -21,7 +33,8 @@ SELECT dbo.cadenaInicialEnMayus (
   'buenas tardes mi nombre es matias')
 GO
 
---Ejer 9 NO FUNCAAAAAAAAAAA
+--Ejer 9 
+-- Para mi esta bien (Koller)
 CREATE FUNCTION OSenEstudios
 	(@nombreEstudio varchar(100))
 	RETURNS TABLE
