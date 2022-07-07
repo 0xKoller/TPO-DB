@@ -47,11 +47,15 @@ CREATE VIEW vw_total_medicos_sin_especialidades AS
 	GROUP BY M.sexo
 GO
 
--- 7) NI IDEA DE A QUÉ SE REFIERE
+-- 7) 
 CREATE VIEW vw_afiliados_con_una_cobertura AS
-	SELECT P.nombre 'Paciente',A.nroafiliado,Pl.nombre 'Plan' FROM afiliados A
-	INNER JOIN pacientes P ON P.dni=A.dni
-	INNER JOIN planes Pl ON Pl.nroplan=A.nroplan
-	GROUP BY P.nombre,A.nroafiliado,Pl.nombre
-	HAVING COUNT(A.nroafiliado)=1
+	SELECT pac.dni, pac.nombre, afi.nroAfiliado, afi.sigla, pla.nombre nombrePlan FROM
+		(SELECT pla.sigla, pla.nroplan, COUNT(pla.nroplan) cantCoberturas FROM planes pla
+			INNER JOIN coberturas cob on pla.sigla = cob.sigla and pla.nroplan = cob.nroplan
+			GROUP BY pla.sigla, pla.nroplan
+			HAVING COUNT(pla.nroPlan) = 1) cob
+		INNER JOIN afiliados afi on cob.sigla = afi.sigla and cob.nroplan = afi.nroPlan
+		INNER JOIN pacientes pac on afi.dni = pac.dni
+		INNER JOIN planes pla on afi.sigla = pla.sigla and afi.nroPlan = pla.nroPlan	
 GO
+
