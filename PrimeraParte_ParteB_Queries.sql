@@ -11,13 +11,10 @@ INNER JOIN (SELECT U.alias, SUM(votosUno+votosDos+votosTres) TotalVotaciones FRO
 INNER JOIN usuarios U ON N.autor=U.idUsuario GROUP BY U.alias) H ON H.TotalVotaciones=T.[Votaciones Totales]
 
 --Ejer 16
-<<<<<<< HEAD
 	
-=======
 SELECT N.titulo Noticia,SUM(votosUno + votosDos + votosTres) AS 'Votaciones Totales' FROM votaciones V 
 INNER JOIN noticias N ON V.idNoticia=N.idNoticia group by N.titulo
 
->>>>>>> 128cbe33ff10e33b4780134c94ca6141a95d788e
 --Ejer 17
 SELECT alias, N.titulo Noticia FROM usuarios U INNER JOIN noticias N ON U.idUsuario=N.autor
 INNER JOIN categorias C ON N.idCategoria=C.idCategoria
