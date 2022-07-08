@@ -1,5 +1,5 @@
-create database CentroMedico
-go
+CREATE DATABASE CentroMedico
+GO
 
 CREATE TABLE CentroMedico.dbo.medicos (
 	matricula INT,
@@ -9,121 +9,122 @@ CREATE TABLE CentroMedico.dbo.medicos (
 	sexo CHAR,
 	CONSTRAINT pk_medicos_matricula PRIMARY KEY (matricula)
 )
-go
+GO
 
-create table CentroMedico.dbo.especialidades (
-	idespecialidad int,
-	especialidad varchar(100),
-	constraint pk_especialidades primary key (idespecialidad)
+CREATE TABLE CentroMedico.dbo.especialidades (
+	idespecialidad INT,
+	especialidad VARCHAR(100),
+	CONSTRAINT pk_especialidades PRIMARY KEY (idespecialidad)
 )
-go
-create table CentroMedico.dbo.espemedi (
-	matricula int,
-	idespecialidad int,
-	constraint fk_espemedi_medicos foreign key (matricula) references medicos,
-	constraint fk_espemedi_especialidades foreign key (idespecialidad) references especialidades
+GO
+
+CREATE TABLE CentroMedico.dbo.espemedi (
+	matricula INT,
+	idespecialidad INT,
+	CONSTRAINT fk_espemedi_medicos FOREIGN KEY (matricula) REFERENCES medicos,
+	CONSTRAINT fk_espemedi_especialidades FOREIGN KEY (idespecialidad) REFERENCES especialidades
 )
-go
+GO
 
-create table CentroMedico.dbo.estudios (
-	idestudio int,
-	estudio varchar(100),
-	activo int,
-	constraint pk_estudios primary key (idestudio)
+CREATE TABLE CentroMedico.dbo.estudios (
+	idestudio INT,
+	estudio VARCHAR(100),
+	activo INT,
+	CONSTRAINT pk_estudios PRIMARY KEY (idestudio)
 )
-go
+GO
 
-create table CentroMedico.dbo.estuespe (
-	idestudio int,
-	idespecialidad int,
-	constraint pk_estuespe primary key(idestudio, idespecialidad),
-	constraint fk_estuespe_estudios foreign key (idestudio) references estudios,
-	constraint fk_estuespe_especialidad foreign key (idespecialidad) references especialidades
+CREATE TABLE CentroMedico.dbo.estuespe (
+	idestudio INT,
+	idespecialidad INT,
+	CONSTRAINT pk_estuespe PRIMARY KEY(idestudio, idespecialidad),
+	CONSTRAINT fk_estuespe_estudios FOREIGN KEY (idestudio) REFERENCES estudios,
+	CONSTRAINT fk_estuespe_especialidad FOREIGN KEY (idespecialidad) REFERENCES especialidades
 )
-go
+GO
 
 
-create table CentroMedico.dbo.institutos (
-	idinstituto int,
-	instituto varchar(100),
-	activo int,
-	constraint pk_institutos primary key (idinstituto)
+CREATE TABLE CentroMedico.dbo.institutos (
+	idinstituto INT,
+	instituto VARCHAR(100),
+	activo INT,
+	CONSTRAINT pk_institutos PRIMARY KEY (idinstituto)
 )
-go
+GO
 
-create table CentroMedico.dbo.precios (
-	idestudio int,
-	idinstituto int,
-	precio decimal(10,2),
-	constraint fk_precios_institutos foreign key (idinstituto) references institutos,
-	constraint fk_precios_estudios foreign key (idestudio) references estudios,
-	constraint pk_precios primary key (idestudio, idinstituto)
+CREATE TABLE CentroMedico.dbo.precios (
+	idestudio INT,
+	idinstituto INT,
+	precio DECIMAL(10,2),
+	CONSTRAINT fk_precios_institutos FOREIGN KEY (idinstituto) REFERENCES institutos,
+	CONSTRAINT fk_precios_estudios FOREIGN KEY (idestudio) REFERENCES estudios,
+	CONSTRAINT pk_precios PRIMARY KEY (idestudio, idinstituto)
 )
-go
+GO
 
-create table CentroMedico.dbo.ooss (
-	sigla varchar(10),
-	nombre varchar(50),
-	categoria varchar(50)
-	constraint pk_ooss primary key (sigla)
+CREATE TABLE CentroMedico.dbo.ooss (
+	sigla VARCHAR(10),
+	nombre VARCHAR(50),
+	categoria VARCHAR(50)
+	CONSTRAINT pk_ooss PRIMARY KEY (sigla)
 )
-go
+GO
 
-create table CentroMedico.dbo.planes(
-	sigla varchar(10),
-	nroplan int,
-	nombre varchar(50),
-	activo int,
-	constraint pk_planes primary key(sigla, nroplan),
-	constraint fk_planes_ooss foreign key (sigla) references ooss,
+CREATE TABLE CentroMedico.dbo.planes(
+	sigla VARCHAR(10),
+	nroplan INT,
+	nombre VARCHAR(50),
+	activo INT,
+	CONSTRAINT pk_planes PRIMARY KEY(sigla, nroplan),
+	CONSTRAINT fk_planes_ooss FOREIGN KEY (sigla) REFERENCES ooss,
 )
-go
+GO
 
-create table CentroMedico.dbo.coberturas(
-	sigla varchar(10),
-	nroplan int,
-	idestudio int,
+CREATE TABLE CentroMedico.dbo.coberturas(
+	sigla VARCHAR(10),
+	nroplan INT,
+	idestudio INT,
 	cobertura float,
-	constraint pk_coberturas primary key (sigla, nroplan, idestudio),
-	constraint fk_coberturas_estudios foreign key (idestudio) references estudios,
-	constraint fk_cobertuas_planes foreign key (sigla, nroplan) references planes
+	CONSTRAINT pk_coberturas PRIMARY KEY (sigla, nroplan, idestudio),
+	CONSTRAINT fk_coberturas_estudios FOREIGN KEY (idestudio) REFERENCES estudios,
+	CONSTRAINT fk_cobertuas_planes FOREIGN KEY (sigla, nroplan) REFERENCES planes
 )
-go
+GO
 
-create table CentroMedico.dbo.afiliados(
-	dni int,
-	sigla varchar(10),
-	nroplan int,
-	nroafiliado int,
-	constraint pk_afiliados primary key (dni, sigla),
-	constraint fk_afiliados_planes foreign key (sigla, nroplan) references planes
+CREATE TABLE CentroMedico.dbo.afiliados(
+	dni INT,
+	sigla VARCHAR(10),
+	nroplan INT,
+	nroafiliado INT,
+	CONSTRAINT pk_afiliados PRIMARY KEY (dni, sigla),
+	CONSTRAINT fk_afiliados_planes FOREIGN KEY (sigla, nroplan) REFERENCES planes
 )
-go
+GO
 
-create table CentroMedico.dbo.pacientes(
-	dni int,
-	nombre varchar(50),
-	apellido varchar(50),
-	sexo char,
-	nacimiento date,
-	constraint pk_pacientes primary key (dni)
+CREATE TABLE CentroMedico.dbo.pacientes(
+	dni INT,
+	nombre VARCHAR(50),
+	apellido VARCHAR(50),
+	sexo CHAR,
+	nacimiento DATE,
+	CONSTRAINT pk_pacientes PRIMARY KEY (dni)
 )
-go
+GO
 
-create table CentroMedico.dbo.historias(
-	dni int,
-	idestudio int,
-	idinstituto int,
+CREATE TABLE CentroMedico.dbo.historias(
+	dni INT,
+	idestudio INT,
+	idinstituto INT,
 	fecha date,
-	matricula int,
-	sigla varchar(10),
-	pagado int,
-	observaciones varchar(500),
-	constraint pk_historias primary key (dni, idestudio, idinstituto, fecha),
-	constraint fk_historias_medicos foreign key (matricula) references medicos,
-	constraint fk_historias_pacientes foreign key (dni) references pacientes,
-	constraint fk_historias_afiliados foreign key (dni, sigla) references afiliados,
-	constraint fk_historias_precios foreign key (idestudio, idinstituto) references precios
+	matricula INT,
+	sigla VARCHAR(10),
+	pagado INT,
+	observaciones VARCHAR(500),
+	CONSTRAINT pk_historias PRIMARY KEY (dni, idestudio, idinstituto, fecha),
+	CONSTRAINT fk_historias_medicos FOREIGN KEY (matricula) REFERENCES medicos,
+	CONSTRAINT fk_historias_pacientes FOREIGN KEY (dni) REFERENCES pacientes,
+	CONSTRAINT fk_historias_afiliados FOREIGN KEY (dni, sigla) REFERENCES afiliados,
+	CONSTRAINT fk_historias_precios FOREIGN KEY (idestudio, idinstituto) REFERENCES precios
 )
-go
+GO
 
