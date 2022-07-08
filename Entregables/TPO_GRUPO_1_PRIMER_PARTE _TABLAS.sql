@@ -287,16 +287,16 @@ CREATE TABLE PrimeraParte_ParteB.dbo.votaciones(
 GO
 
 --Insert Usuarios
-INSERT INTO usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (0, 'Jose Luis', 'SR Developer', '123$%^789', 1, 'seniordeveloper@koller.com')
-INSERT INTO usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (1, 'Constantino', 'Web Scrapper Officer', 'pythonrocks', 1, 'pythonesco@gmail.com')
-INSERT INTO usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (2,'Matias', 'PHP Rocks', 'phpisdead', 1, 'myownemail@matute.com')
-INSERT INTO usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (3, 'Latour', 'Oxford dude', 'guater', 0, 'cambridge@gmail.com')
+INSERT INTO PrimeraParte_ParteB.dbo.usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (0, 'Jose Luis', 'SR Developer', '123$%^789', 1, 'seniordeveloper@koller.com')
+INSERT INTO PrimeraParte_ParteB.dbo.usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (1, 'Constantino', 'Web Scrapper Officer', 'pythonrocks', 1, 'pythonesco@gmail.com')
+INSERT INTO PrimeraParte_ParteB.dbo.usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (2,'Matias', 'PHP Rocks', 'phpisdead', 1, 'myownemail@matute.com')
+INSERT INTO PrimeraParte_ParteB.dbo.usuarios (idUsuario, nombre, alias, contra, activo, correo) VALUES (3, 'Latour', 'Oxford dude', 'guater', 0, 'cambridge@gmail.com')
 GO
 
 --Insert Categorias
-INSERT INTO categorias(idCategoria, nombre, descripcion) VALUES (0, 'Policiales', 'Noticias de incidentes, accidentes, transito, manifestaciones')
-INSERT INTO categorias(idCategoria, nombre, descripcion) VALUES (1, 'Politica', 'Destapando verdades de la politica Argentina')
-INSERT INTO categorias(idCategoria, nombre, descripcion) VALUES (2, 'Deportes', 'Toda la informacion sobre copas nacionales y mundiales')
+INSERT INTO PrimeraParte_ParteB.dbo.categorias(idCategoria, nombre, descripcion) VALUES (0, 'Policiales', 'Noticias de incidentes, accidentes, transito, manifestaciones')
+INSERT INTO PrimeraParte_ParteB.dbo.categorias(idCategoria, nombre, descripcion) VALUES (1, 'Politica', 'Destapando verdades de la politica Argentina')
+INSERT INTO PrimeraParte_ParteB.dbo.categorias(idCategoria, nombre, descripcion) VALUES (2, 'Deportes', 'Toda la informacion sobre copas nacionales y mundiales')
 GO
 
 --Insert Noticias
@@ -305,17 +305,17 @@ INSERT INTO noticias(idNoticia, titulo, idCategoria, autor, fecha, ubicacion) VA
 GO
 
 --Insert Comentarios
-INSERT INTO comentarios(idComentario,idNoticia, texto, idUsuario, fecha) VALUES (1, 1,'NEUQUEN ES COMPROMISO', 0, '11/03/2021')
+INSERT INTO PrimeraParte_ParteB.dbo.comentarios(idComentario,idNoticia, texto, idUsuario, fecha) VALUES (1, 1,'NEUQUEN ES COMPROMISO', 0, '11/03/2021')
 GO
 
 --Insert Privilegios
-INSERT INTO privilegios(idUsuario, privilegio, idCategoria) VALUES (0, 'Responsable', 0)
-INSERT INTO privilegios(idUsuario, privilegio, idCategoria) VALUES (1, 'Crear Noticia', 0)
-INSERT INTO privilegios(idUsuario, privilegio, idCategoria) VALUES (2, 'Crear Noticia', 1)
-INSERT INTO privilegios(idUsuario, privilegio, idCategoria) VALUES (3, 'Responsable', 1)
+INSERT INTO PrimeraParte_ParteB.dbo.privilegios(idUsuario, privilegio, idCategoria) VALUES (0, 'Responsable', 0)
+INSERT INTO PrimeraParte_ParteB.dbo.privilegios(idUsuario, privilegio, idCategoria) VALUES (1, 'Crear Noticia', 0)
+INSERT INTO PrimeraParte_ParteB.dbo.privilegios(idUsuario, privilegio, idCategoria) VALUES (2, 'Crear Noticia', 1)
+INSERT INTO PrimeraParte_ParteB.dbo.privilegios(idUsuario, privilegio, idCategoria) VALUES (3, 'Responsable', 1)
 GO
 
 --Insert Votaciones
-INSERT INTO votaciones(idVotacion, idNoticia, fechaInicio, fechaFin, pregunta, respUno, respDos, respTres, votosUno, votosDos, votosTres) VALUES (0, 0, '01/07/2022', '08/07/2022', 'Era necesario?', 'Totalmente', 'No lo se', 'Indignante', 50, 4, 84)
-INSERT INTO votaciones(idVotacion, idNoticia, fechaInicio, fechaFin, pregunta, respUno, respDos, respTres, votosUno, votosDos, votosTres) VALUES (1, 1, '11/03/2021', '18/03/2021', 'Era necesario?', 'Totalmente', 'No lo se', 'Indignante', 123, 45, 34)
+INSERT INTO PrimeraParte_ParteB.dbo.votaciones(idVotacion, idNoticia, fechaInicio, fechaFin, pregunta, respUno, respDos, respTres, votosUno, votosDos, votosTres) VALUES (0, 0, '01/07/2022', '08/07/2022', 'Era necesario?', 'Totalmente', 'No lo se', 'Indignante', 50, 4, 84)
+INSERT INTO PrimeraParte_ParteB.dbo.votaciones(idVotacion, idNoticia, fechaInicio, fechaFin, pregunta, respUno, respDos, respTres, votosUno, votosDos, votosTres) VALUES (1, 1, '11/03/2021', '18/03/2021', 'Era necesario?', 'Totalmente', 'No lo se', 'Indignante', 123, 45, 34)
 GO
